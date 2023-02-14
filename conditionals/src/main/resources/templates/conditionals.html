@@ -4,7 +4,20 @@
         <title>Conditionals</title>
     </head>
     <body>
+
+        <!--if/unless statement-->
+        <p th:if="${sales > 50}">Sales are good because its over 50 this quarter</p>
+        <p th:unless="${sales > 50}">Sales are bad because they are below 50 this quarter</p>
+
         <!-- ternary operator returns a value based on its condition -->
         <p th:text="${sales > 30} ? 'Sales are good' : 'Sales are bad' "></p>
+
+        <!-- switch case -->
+        <div th:switch="${product}">
+            <p th:case="'chair'">$50</p>
+            <p th:case="'tv'">$150</p>
+            <p th:case="*">No match</p>
+        </div>
+
     </body>
 </html>
