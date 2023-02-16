@@ -17,6 +17,12 @@ public class GradesController {
             new Grade("Bill", "Java", "B")
     );
 
+    @GetMapping("/")
+    public String gradeForm(Model model) {
+        model.addAttribute("grade", new Grade());
+        return "form";
+    }
+
     @GetMapping("/grades")
     public String getGrades(Model model) {
 
