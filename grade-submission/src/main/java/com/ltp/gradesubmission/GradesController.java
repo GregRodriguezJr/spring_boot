@@ -16,7 +16,13 @@ public class GradesController {
 
     @GetMapping("/")
     public String gradeForm(Model model, @RequestParam(required = false) String name) {
-        model.addAttribute("grade", new Grade());
+        Grade grade;
+        if (getGradeIndex(name) == -1) {
+            grade = new Grade();
+        } else {
+            grade = studentGrades.get(getGradeIndex(name));
+        }
+        model.addAttribute("grade", grade);
         return "form";
     }
 
@@ -37,7 +43,12 @@ public class GradesController {
 
     @PostMapping("/handleSubmit")
     public String submitForm(Grade grade) {
-        studentGrades.add(grade);
+        int index = getGradeIndex(grade.getName());
+        if (index == -1) {
+            studentGrades.add(grade);
+        } else {
+            studentGrades.set(index, grade);
+        }
         return "redirect:/grades";
     }
 
