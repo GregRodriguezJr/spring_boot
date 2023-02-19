@@ -34,9 +34,9 @@ public class GradesController {
 
     public Integer getGradeIndex(String id) {
         for (int i = 0; i < studentGrades.size(); i++) {
-            if (studentGrades.get(i).getId().equals(id)) return i;
+            if (studentGrades.get(i).getId().equals(id)) return Constants.NOT_FOUND;
         }
-        return -1;
+        return Constants.NOT_FOUND;
     }
 
     @PostMapping("/handleSubmit")
